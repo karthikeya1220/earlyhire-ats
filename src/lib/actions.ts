@@ -83,9 +83,10 @@ async function validateJobAssignment(
     .maybeSingle();
 
   if (error) {
+    console.error("validateJobAssignment lookup failed:", error.message);
     return {
       ok: false,
-      message: `Could not verify the selected role: ${error.message}`,
+      message: "Could not verify the selected role. Please try again.",
       fieldError: false,
     };
   }
@@ -152,9 +153,11 @@ export async function createCandidate(
     .single();
 
   if (error || !created) {
-    const message = error?.message ?? "the database returned no row";
-    console.error("createCandidate insert failed:", message);
-    return { status: "error", message: `Could not create candidate: ${message}` };
+    console.error("createCandidate insert failed:", error?.message ?? "no row returned");
+    return {
+      status: "error",
+      message: "Could not create candidate. Please try again.",
+    };
   }
 
   // Record the real pipeline entry. If this secondary write fails, the
@@ -204,7 +207,10 @@ export async function updateCandidate(
 
   if (existingError) {
     console.error("updateCandidate lookup failed:", existingError.message);
-    return { status: "error", message: `Could not update candidate: ${existingError.message}` };
+    return {
+      status: "error",
+      message: "Could not update candidate. Please try again.",
+    };
   }
   if (!existing) {
     return { status: "error", message: "Candidate not found." };
@@ -244,7 +250,10 @@ export async function updateCandidate(
 
   if (error) {
     console.error("updateCandidate failed:", error.message);
-    return { status: "error", message: `Could not update candidate: ${error.message}` };
+    return {
+      status: "error",
+      message: "Could not update candidate. Please try again.",
+    };
   }
   if (!updated) {
     return { status: "error", message: "Candidate not found." };
@@ -277,7 +286,10 @@ export async function changeStage(
 
   if (error) {
     console.error("changeStage rpc failed:", error.message);
-    return { status: "error", message: `Could not change stage: ${error.message}` };
+    return {
+      status: "error",
+      message: "Could not change stage. Please try again.",
+    };
   }
 
   revalidateAll(candidateId);
@@ -310,7 +322,10 @@ export async function addNote(
 
   if (error) {
     console.error("addNote insert failed:", error.message);
-    return { status: "error", message: `Could not add note: ${error.message}` };
+    return {
+      status: "error",
+      message: "Could not add note. Please try again.",
+    };
   }
 
   revalidateAll(candidateId);
@@ -339,9 +354,11 @@ export async function createJob(
     .single();
 
   if (error || !created) {
-    const message = error?.message ?? "the database returned no row";
-    console.error("createJob insert failed:", message);
-    return { status: "error", message: `Could not create role: ${message}` };
+    console.error("createJob insert failed:", error?.message ?? "no row returned");
+    return {
+      status: "error",
+      message: "Could not create role. Please try again.",
+    };
   }
 
   revalidatePath("/jobs");
@@ -371,7 +388,10 @@ export async function setJobStatus(
 
   if (error) {
     console.error("setJobStatus failed:", error.message);
-    return { status: "error", message: `Could not update role: ${error.message}` };
+    return {
+      status: "error",
+      message: "Could not update role. Please try again.",
+    };
   }
   if (!updated) {
     return { status: "error", message: "Role not found." };

@@ -46,6 +46,21 @@ export function CandidateFilterBar({
     return nextQ;
   };
 
+  // Mirror external `q` changes (back/forward, links that land on
+  // /candidates with a different q) into the input. When the new `filters.q`
+  // matches what this bar last applied, the change is our own debounced write
+  // and the input is left alone so in-flight keystrokes survive the round
+  // trip. No navigation is issued here, so this can't loop.
+  React.useEffect(() => {
+    if (lastAppliedQ.current === filters.q) return;
+    lastAppliedQ.current = filters.q;
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+      debounceRef.current = null;
+    }
+    setSearch(filters.q);
+  }, [filters.q]);
+
   const applyFilters = React.useCallback(
     (next: CandidateFilters) => {
       const params = candidateFiltersToSearchParams(next);

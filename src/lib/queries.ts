@@ -1,6 +1,7 @@
 import { cache } from "react";
 
 import { STAGES, type Stage } from "./stages";
+import { buildCandidateSearchFilter } from "./search-filter";
 import { getSupabase } from "./supabase/server";
 import { isUuid } from "./utils";
 import type {
@@ -54,28 +55,11 @@ export async function listCandidates(
   if (filters.stage) query = query.eq("stage", filters.stage);
   if (filters.jobId) query = query.eq("job_id", filters.jobId);
   if (filters.q) {
-    const term = filters.q.trim();
-    if (term) {
-      // Escape LIKE wildcards in user input so `%`/`_` are literal.
-      const escaped = term.replace(/[\\%_]/g, (m) => `\\${m}`);
-      const pattern = `%${escaped}%`;
-      const orParts = [
-        `name.ilike.${pattern}`,
-        `email.ilike.${pattern}`,
-        `current_title.ilike.${pattern}`,
-        `current_company.ilike.${pattern}`,
-      ];
-
-      // Skills is a text[] column, so it can't take an ILIKE filter and a
-      // cast isn't allowed inside PostgREST's or() grammar. Array containment
-      // (@>) is the only server-side option: it matches whole elements and is
-      // case-sensitive, so "React" matches but "react" does not. Trade-off is
-      // documented here rather than pulling skills filtering client-side.
-      const lower = escaped.toLowerCase();
-      orParts.push(`skills.cs.{${escaped}}`, `skills.cs.{${lower}}`);
-
-      query = query.or(orParts.join(","));
-    }
+    // Two-layer escaping (LIKE literals + PostgREST filter grammar) lives in
+    // search-filter.ts; the skills clauses are dropped there when the term
+    // contains array-literal structural characters.
+    const orFilter = buildCandidateSearchFilter(filters.q);
+    if (orFilter) query = query.or(orFilter);
   }
 
   const { data, error } = await query;
