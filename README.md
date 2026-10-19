@@ -12,8 +12,10 @@ EarlyHire tracks candidates across a 7-stage pipeline:
 - Rejected (out of the active pipeline, but still counted where the candidate
   previously advanced)
 
-The app has four surfaces:
+The app has four surfaces plus a public landing page:
 
+- **Landing page** (`/`) — marketing page explaining the product, with a live
+  preview built from the seeded demo workspace
 - **Dashboard** — live pipeline overview, stage breakdown, progression ratios,
   and recent activity
 - **Candidates** — search, filter, and review every candidate; add, edit, and
@@ -21,8 +23,6 @@ The app has four surfaces:
 - **Jobs** — manage open/closed roles and see their pipelines
 - **Candidate profile** — summary, stage transition control, notes, activity
   timeline
-
-The default landing page redirects to `/dashboard`.
 
 ## Quick start
 
@@ -38,7 +38,7 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000). You will land on the
-dashboard.
+marketing page; open the dashboard from its "Open Dashboard" button.
 
 If you are starting from an empty Supabase project, seed it with
 `supabase/seed.sql` after applying `supabase/migrations/0001_init.sql`.
@@ -57,12 +57,13 @@ src/
       jobs/               jobs route + loading/error segments
       layout.tsx          app shell layout
     layout.tsx            root layout, fonts, theme provider
-    page.tsx              redirects to /dashboard
-    globals.css           design system
+    page.tsx              public marketing landing page
+    globals.css           design system + marketing tokens
   components/
     candidates/           candidate list, forms, badges, skeletons, states
     dashboard/            dashboard tiles, pipeline, funnel, activity, skeletons
     jobs/                 job list, create panel, status toggle, skeletons
+    marketing/            landing nav, hero, product proof, workflow, features
     shell/                app shell, sidebar, topbar, theme toggle, nav
     forms/                shared form header, error state
     ui/                   small primitives (button, form field, sheet)
@@ -137,6 +138,9 @@ The design system is defined in `src/app/globals.css`. It uses:
   rejected stages
 - Compact density — recruiters scan tables and pipelines, so spacing favors
   information over decoration
+- A warm-paper marketing palette (`--marketing-*` tokens) used only by the
+  landing page at `/`; product fragments on that page stay on the cool app
+  tokens so the interface reads as a distinct layer
 
 Badges and pipeline bars read from `src/components/candidates/stage-badge-styles.ts`
 so colors stay consistent and adapt automatically in dark mode.
@@ -175,7 +179,8 @@ Each dynamic route has loading, error, and not-found segments where appropriate:
 - `/candidates/[id]/edit`
 - `/jobs`
 
-Data fetching uses Next.js Suspense boundaries so the shell can prerender and the
+The landing page at `/` is static. Data fetching on the dynamic routes uses
+Next.js Suspense boundaries so the shell can prerender and the
 dynamic content streams in at request time. That means the build should never bake
 in a stale snapshot of your candidate counts. If you run `next build`, the dynamic
 routes render as partially prerendered, not fully static.

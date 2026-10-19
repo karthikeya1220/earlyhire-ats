@@ -60,6 +60,16 @@
     0 4px 12px oklch(0.2 0.012 265 / 0.06);
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Marketing surface — warm paper canvas for the public landing page.
+     Product fragments stay on the cool app tokens above, so the interface
+     reads as a distinct layer above the marketing page. */
+  --marketing-bg: oklch(0.978 0.009 95);
+  --marketing-panel: oklch(0.958 0.012 95);
+  --marketing-ink: oklch(0.25 0.021 268);
+  --marketing-muted: oklch(0.46 0.017 268);
+  --marketing-line: oklch(0.885 0.012 95);
+  --marketing-teal: oklch(0.47 0.095 200);
 }
 
 .dark {
@@ -106,6 +116,13 @@
   --shadow-xs: 0 1px 2px oklch(0 0 0 / 0.3);
   --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.35), 0 1px 3px oklch(0 0 0 / 0.25);
   --shadow-md: 0 2px 4px oklch(0 0 0 / 0.35), 0 4px 12px oklch(0 0 0 / 0.3);
+
+  --marketing-bg: oklch(0.165 0.012 268);
+  --marketing-panel: oklch(0.195 0.013 268);
+  --marketing-ink: oklch(0.955 0.005 260);
+  --marketing-muted: oklch(0.67 0.014 268);
+  --marketing-line: oklch(1 0 0 / 0.1);
+  --marketing-teal: oklch(0.74 0.095 200);
 }
 
 @theme inline {
@@ -139,6 +156,12 @@
   --color-stage-offer: var(--stage-offer);
   --color-stage-joined: var(--stage-joined);
   --color-stage-rejected: var(--stage-rejected);
+  --color-marketing-bg: var(--marketing-bg);
+  --color-marketing-panel: var(--marketing-panel);
+  --color-marketing-ink: var(--marketing-ink);
+  --color-marketing-muted: var(--marketing-muted);
+  --color-marketing-line: var(--marketing-line);
+  --color-marketing-teal: var(--marketing-teal);
 
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
@@ -166,6 +189,15 @@
   --text-micro: 0.6875rem;
   --text-micro--line-height: 0.875rem;
   --text-micro--letter-spacing: 0.06em;
+  /* Marketing scale, same trajectory: hero → section → display → title. */
+  --text-hero: clamp(2.375rem, 4.6vw, 3.25rem);
+  --text-hero--line-height: 1.05;
+  --text-hero--letter-spacing: -0.03em;
+  --text-hero--font-weight: 600;
+  --text-section: 2rem;
+  --text-section--line-height: 2.5rem;
+  --text-section--letter-spacing: -0.02em;
+  --text-section--font-weight: 600;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -189,4 +221,33 @@ html {
 
 html.dark {
   color-scheme: dark;
+}
+
+/* Landing entrance: one rise-in, staggered by inline animation-delay.
+   Removed entirely under prefers-reduced-motion. */
+@keyframes marketing-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.marketing-rise {
+  animation: marketing-rise 0.65s var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marketing-rise {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
