@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
 
 import { STAGE_LABELS } from "@/lib/stages";
+import { cn } from "@/lib/utils";
+import { STAGE_BAR_STYLES } from "@/components/candidates/stage-badge-styles";
 import type { DashboardConversionStep } from "@/lib/types";
 
 function rateLabel(rate: number | null): string {
@@ -23,12 +25,12 @@ export function ConversionFunnel({
   return (
     <section
       aria-labelledby="conversion-heading"
-      className="rounded-lg border border-border bg-card"
+      className="rounded-lg border border-border bg-card shadow-xs"
     >
       <div className="border-b border-border px-5 py-3">
         <h2
           id="conversion-heading"
-          className="text-sm font-medium text-foreground"
+          className="text-sm font-semibold text-foreground"
         >
           Stage progression
         </h2>
@@ -56,7 +58,21 @@ export function ConversionFunnel({
                 {rateLabel(step.rate)}
               </span>
             </div>
-            <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+            {/* Thin meter: the rate again, as length, in the destination
+                stage's hue. aria-hidden — the printed percentage above is the
+                accessible reading. */}
+            {step.rate !== null && (
+              <div
+                aria-hidden="true"
+                className="mt-2 h-1 w-full overflow-hidden rounded-full bg-muted"
+              >
+                <div
+                  className={cn("h-full rounded-full", STAGE_BAR_STYLES[step.to])}
+                  style={{ width: `${step.rate}%` }}
+                />
+              </div>
+            )}
+            <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
               {step.rate === null
                 ? `No candidate has reached ${STAGE_LABELS[step.from]} yet.`
                 : `${step.toCount} of ${step.fromCount} candidates who reached ${STAGE_LABELS[step.from]} also reached ${STAGE_LABELS[step.to]}.`}
@@ -66,13 +82,13 @@ export function ConversionFunnel({
       </ol>
 
       <div className="flex flex-col gap-1 border-t border-border px-5 py-3">
-        <p className="text-[11px] leading-relaxed text-muted-foreground">
+        <p className="text-xs leading-relaxed text-muted-foreground">
           {rejectedCount} of {totalCandidates} candidate
           {totalCandidates === 1 ? " is" : "s are"} currently rejected. Rejected
           candidates leave the progression above but are still counted wherever
           they previously advanced.
         </p>
-        <p className="text-[11px] leading-relaxed text-muted-foreground">
+        <p className="text-xs leading-relaxed text-muted-foreground">
           These are stage-progression ratios, not a hiring success rate.
         </p>
       </div>

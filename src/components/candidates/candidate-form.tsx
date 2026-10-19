@@ -97,9 +97,9 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-lg border border-border bg-card">
+    <section className="rounded-lg border border-border bg-card shadow-xs">
       <div className="border-b border-border px-5 py-3">
-        <h2 className="text-sm font-medium text-foreground">{title}</h2>
+        <h2 className="text-sm font-semibold text-foreground">{title}</h2>
         {description && (
           <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
         )}
@@ -457,7 +457,7 @@ export function CandidateForm(props: CandidateFormProps) {
       </Section>
 
       <div className="flex flex-col-reverse gap-2 pb-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[11px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           {mode === "create"
             ? "The candidate starts in Applied."
             : `Currently ${STAGE_LABELS[stage]}.`}

@@ -94,10 +94,10 @@ export function JobCreateForm({ onCancel }: { onCancel: () => void }) {
   return (
     <section
       aria-labelledby="new-role-heading"
-      className="mt-4 rounded-lg border border-border bg-card"
+      className="mt-4 rounded-lg border border-border bg-card shadow-xs"
     >
       <div className="border-b border-border px-5 py-3">
-        <h3 id="new-role-heading" className="text-sm font-medium text-foreground">
+        <h3 id="new-role-heading" className="text-sm font-semibold text-foreground">
           New role
         </h3>
         <p className="mt-0.5 text-xs text-muted-foreground">

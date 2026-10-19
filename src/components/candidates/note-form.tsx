@@ -59,10 +59,10 @@ export function NoteForm({ candidateId }: { candidateId: string }) {
   return (
     <section
       aria-labelledby="note-heading"
-      className="flex flex-col gap-2 rounded-lg border border-border bg-card p-4"
+      className="flex flex-col gap-2 rounded-lg border border-border bg-card shadow-xs p-4"
     >
       <div>
-        <h2 id="note-heading" className="text-sm font-medium text-foreground">
+        <h2 id="note-heading" className="text-sm font-semibold text-foreground">
           Add a note
         </h2>
         <p className="mt-0.5 text-xs text-muted-foreground">

@@ -25,16 +25,25 @@ export function PipelineBreakdown({
   return (
     <section
       aria-labelledby="pipeline-heading"
-      className="rounded-lg border border-border bg-card"
+      className="rounded-lg border border-border bg-card shadow-xs"
     >
       <div className="border-b border-border px-5 py-3">
-        <h2 id="pipeline-heading" className="text-sm font-medium text-foreground">
+        <h2 id="pipeline-heading" className="text-sm font-semibold text-foreground">
           Pipeline by stage
         </h2>
         <p className="mt-0.5 text-xs text-muted-foreground">
           Bar length is the share of all {totalCandidates} candidates who have
           ever reached a stage. The solid part is how many are in it now.
         </p>
+      </div>
+
+      <div className="flex items-center justify-between gap-3 border-b border-border bg-subtle/60 px-5 py-1.5">
+        <span className="text-micro font-medium uppercase text-muted-foreground">
+          Stage
+        </span>
+        <span className="text-micro font-medium uppercase text-muted-foreground">
+          Now · Ever
+        </span>
       </div>
 
       <ul className="flex flex-col">
@@ -57,14 +66,10 @@ export function PipelineBreakdown({
                 >
                   <StageBadge stage={stage} />
                 </Link>
-                <p className="text-[11px] text-muted-foreground">
-                  <span className="font-medium tabular-nums text-foreground">
-                    {current}
-                  </span>{" "}
-                  now
+                <p className="shrink-0 text-right text-xs tabular-nums text-muted-foreground">
+                  <span className="font-medium text-foreground">{current}</span>
                   <span aria-hidden="true"> · </span>
-                  <span className="tabular-nums text-foreground">{reached}</span>{" "}
-                  ever
+                  <span className="text-foreground">{reached}</span>
                 </p>
               </div>
 
@@ -95,7 +100,7 @@ export function PipelineBreakdown({
         })}
       </ul>
 
-      <p className="border-t border-border px-5 py-3 text-[11px] leading-relaxed text-muted-foreground">
+      <p className="border-t border-border px-5 py-3 text-xs leading-relaxed text-muted-foreground">
         “Ever” counts distinct candidates with a stage-change event for that
         stage, plus anyone sitting in it now. A candidate appears under every
         stage they passed through, so these numbers add up to more than the

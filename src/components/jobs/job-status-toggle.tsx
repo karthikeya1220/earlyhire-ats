@@ -73,7 +73,7 @@ export function JobStatusToggle({
       {error && (
         <p
           role="alert"
-          className="max-w-52 text-right text-[11px] leading-relaxed text-destructive"
+          className="max-w-52 text-right text-xs leading-relaxed text-destructive"
         >
           {error}
         </p>

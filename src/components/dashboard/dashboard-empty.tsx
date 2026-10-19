@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button";
 // which would look like failing metrics instead of an empty pipeline.
 export function DashboardEmptyState() {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-border bg-card px-6 py-16 text-center">
+    <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-border bg-card shadow-xs px-6 py-16 text-center">
       <span className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-muted-foreground">
         <Users aria-hidden="true" className="h-5 w-5" />
       </span>
       <div>
-        <h2 className="text-sm font-medium text-foreground">
+        <h2 className="text-sm font-semibold text-foreground">
           No pipeline data yet
         </h2>
         <p className="mx-auto mt-1 max-w-sm text-xs leading-relaxed text-muted-foreground">

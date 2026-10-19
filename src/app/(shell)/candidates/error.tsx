@@ -17,7 +17,7 @@ export default function CandidatesError({
           <AlertTriangle aria-hidden="true" className="h-5 w-5" />
         </span>
         <div>
-          <p className="text-sm font-medium text-foreground">
+          <p className="text-sm font-semibold text-foreground">
             Couldn&apos;t load candidates
           </p>
           <p className="mt-1 max-w-sm text-xs text-muted-foreground">

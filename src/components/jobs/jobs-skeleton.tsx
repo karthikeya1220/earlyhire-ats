@@ -16,7 +16,7 @@ export function JobsSkeleton() {
 
       <div aria-hidden="true">
         <div className="h-2.5 w-20 rounded bg-muted" />
-        <div className="mt-2 overflow-hidden rounded-lg border border-border bg-card">
+        <div className="mt-2 overflow-hidden rounded-lg border border-border bg-card shadow-xs">
           {Array.from({ length: 4 }, (_, index) => (
             <div
               key={index}

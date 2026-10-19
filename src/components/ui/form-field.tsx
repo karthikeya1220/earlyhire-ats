@@ -44,7 +44,7 @@ export function FormField({
       {hint && (
         <p
           id={`${id}-hint`}
-          className="text-[11px] leading-relaxed text-muted-foreground"
+          className="text-xs leading-relaxed text-muted-foreground"
         >
           {hint}
         </p>
@@ -53,7 +53,7 @@ export function FormField({
         <p
           id={`${id}-error`}
           role="alert"
-          className="text-[11px] leading-relaxed text-destructive"
+          className="text-xs leading-relaxed text-destructive"
         >
           {error}
         </p>

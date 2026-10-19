@@ -35,9 +35,15 @@ export function CandidateRow({
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="truncate text-sm font-medium text-foreground group-hover:text-primary">
+          <span className="truncate text-sm font-semibold text-foreground group-hover:text-primary">
             {candidate.name}
           </span>
+          {/* Below sm the stage column is hidden, so the badge rides next to
+              the name — stage is the one signal a phone recruiter can't lose. */}
+          <StageBadge
+            stage={candidate.stage}
+            className="shrink-0 sm:hidden"
+          />
         </div>
         <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
           <span className="truncate">{candidate.email}</span>

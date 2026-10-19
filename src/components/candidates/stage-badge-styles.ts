@@ -1,38 +1,67 @@
 import type { Stage } from "@/lib/stages";
 
-// Semantic color tokens per stage. Using theme variables (not raw palette
-// classes) means badges adapt automatically in dark mode. Applied uses a
-// neutral gray so the accent stages (interview/offer) carry emphasis.
+// One hue per stage, drawn from the --stage-* design tokens so badges, bars
+// and chips agree and dark mode flips with the theme. Applied stays neutral
+// gray (it is the "everything" bucket); the pipeline hues then read as one
+// ordered ramp — sky → indigo → amber → green — with red for rejected.
 export const STAGE_BADGE_STYLES: Record<Stage, string> = {
-  applied: "bg-muted text-muted-foreground ring-border-strong",
-  screening: "bg-primary/10 text-primary ring-primary/20",
-  shortlisted: "bg-primary/15 text-primary ring-primary/25",
-  interview: "bg-primary/20 text-primary ring-primary/30",
-  offer: "bg-success/15 text-success ring-success/30",
-  joined: "bg-success/20 text-success ring-success/35",
-  rejected: "bg-destructive/10 text-destructive ring-destructive/25",
+  applied: "bg-stage-applied/10 text-stage-applied ring-stage-applied/30",
+  screening: "bg-stage-screening/12 text-stage-screening ring-stage-screening/30",
+  shortlisted:
+    "bg-stage-shortlisted/12 text-stage-shortlisted ring-stage-shortlisted/30",
+  interview: "bg-stage-interview/15 text-stage-interview ring-stage-interview/35",
+  offer: "bg-stage-offer/12 text-stage-offer ring-stage-offer/30",
+  joined: "bg-stage-joined/12 text-stage-joined ring-stage-joined/30",
+  rejected: "bg-stage-rejected/10 text-stage-rejected ring-stage-rejected/30",
 };
 
-// Pipeline bar fills, using the same semantic tokens as the badges. `solid`
-// marks candidates currently in a stage; `soft` marks the wider set who have
-// ever reached it. Keeping both maps full means a bar can be indexed by Stage
-// without a fallback.
+// Selected stage radio chip: same hue, plus a matching border so the choice
+// reads as a picked control rather than a badge.
+export const STAGE_CHIP_STYLES: Record<Stage, string> = {
+  applied: "border-stage-applied/40 bg-stage-applied/10 text-stage-applied",
+  screening:
+    "border-stage-screening/40 bg-stage-screening/12 text-stage-screening",
+  shortlisted:
+    "border-stage-shortlisted/40 bg-stage-shortlisted/12 text-stage-shortlisted",
+  interview:
+    "border-stage-interview/45 bg-stage-interview/15 text-stage-interview",
+  offer: "border-stage-offer/40 bg-stage-offer/12 text-stage-offer",
+  joined: "border-stage-joined/40 bg-stage-joined/12 text-stage-joined",
+  rejected: "border-destructive/40 bg-destructive/10 text-destructive",
+};
+
+// Pipeline bar fills. `solid` marks candidates currently in a stage; `soft`
+// marks the wider set who have ever reached it. Full maps so a bar can be
+// indexed by Stage without a fallback. Applied's fills stay muted so the
+// biggest bucket doesn't dominate the chart.
 export const STAGE_BAR_STYLES: Record<Stage, string> = {
-  applied: "bg-muted-foreground/60",
-  screening: "bg-primary/45",
-  shortlisted: "bg-primary/60",
-  interview: "bg-primary/80",
-  offer: "bg-success/55",
-  joined: "bg-success/85",
-  rejected: "bg-destructive/55",
+  applied: "bg-stage-applied/55",
+  screening: "bg-stage-screening",
+  shortlisted: "bg-stage-shortlisted",
+  interview: "bg-stage-interview",
+  offer: "bg-stage-offer",
+  joined: "bg-stage-joined",
+  rejected: "bg-stage-rejected",
 };
 
 export const STAGE_BAR_SOFT_STYLES: Record<Stage, string> = {
-  applied: "bg-muted-foreground/20",
-  screening: "bg-primary/15",
-  shortlisted: "bg-primary/15",
-  interview: "bg-primary/15",
-  offer: "bg-success/15",
-  joined: "bg-success/15",
-  rejected: "bg-destructive/15",
+  applied: "bg-stage-applied/18",
+  screening: "bg-stage-screening/25",
+  shortlisted: "bg-stage-shortlisted/25",
+  interview: "bg-stage-interview/25",
+  offer: "bg-stage-offer/25",
+  joined: "bg-stage-joined/25",
+  rejected: "bg-stage-rejected/22",
+};
+
+// 2px stage-colored top rule for the profile identity card — the one place
+// the candidate's current stage colors the layout itself.
+export const STAGE_ACCENT_STYLES: Record<Stage, string> = {
+  applied: "border-t-stage-applied/70",
+  screening: "border-t-stage-screening",
+  shortlisted: "border-t-stage-shortlisted",
+  interview: "border-t-stage-interview",
+  offer: "border-t-stage-offer",
+  joined: "border-t-stage-joined",
+  rejected: "border-t-stage-rejected",
 };

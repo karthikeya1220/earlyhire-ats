@@ -15,6 +15,10 @@ import { STAGE_LABELS, type Stage } from "@/lib/stages";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { StageBadge } from "@/components/candidates/stage-badge";
+import {
+  STAGE_BAR_STYLES,
+  STAGE_CHIP_STYLES,
+} from "@/components/candidates/stage-badge-styles";
 
 // Happy-path pipeline, shown as a compact progress rail. `rejected` is off
 // this rail because it removes the candidate from the active pipeline.
@@ -162,11 +166,11 @@ export function StageTransitionControl({
   return (
     <section
       aria-labelledby="stage-heading"
-      className="flex flex-col gap-4 rounded-lg border border-border bg-card p-4"
+      className="flex flex-col gap-4 rounded-lg border border-border bg-card shadow-xs p-4"
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 id="stage-heading" className="text-sm font-medium text-foreground">
+          <h2 id="stage-heading" className="text-sm font-semibold text-foreground">
             Move stage
           </h2>
           <p className="mt-0.5 text-xs text-muted-foreground">
@@ -191,7 +195,7 @@ export function StageTransitionControl({
                   isRejected
                     ? "bg-destructive/30"
                     : index <= pipelineIndex
-                      ? "bg-primary"
+                      ? STAGE_BAR_STYLES[stage]
                       : "bg-muted",
                 )}
               />
@@ -219,9 +223,7 @@ export function StageTransitionControl({
                     "flex cursor-pointer items-center justify-center rounded-md border px-2 py-1.5 text-xs font-medium transition-colors",
                     "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:ring-offset-card",
                     isChosen
-                      ? stage === "rejected"
-                        ? "border-destructive/40 bg-destructive/10 text-destructive"
-                        : "border-primary/50 bg-primary/10 text-primary"
+                      ? STAGE_CHIP_STYLES[stage]
                       : "border-border bg-card text-muted-foreground hover:bg-subtle hover:text-foreground",
                   )}
                 >
@@ -241,7 +243,7 @@ export function StageTransitionControl({
         </fieldset>
 
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="text-[11px] text-muted-foreground">
+          <p className="text-xs text-muted-foreground">
             Currently {STAGE_LABELS[currentStage]}
           </p>
           <StageSubmitButton selected={selected} buttonRef={submitRef} />

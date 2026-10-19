@@ -21,7 +21,7 @@ export function JobCreatePanel({
     <section aria-labelledby="roles-heading">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 id="roles-heading" className="text-sm font-medium text-foreground">
+          <h2 id="roles-heading" className="text-title text-foreground">
             Roles
           </h2>
           <p className="mt-0.5 text-xs text-muted-foreground">

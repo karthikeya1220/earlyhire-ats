@@ -11,12 +11,16 @@ export function CandidateRowSkeleton() {
     >
       <div className="h-8 w-8 shrink-0 rounded-full bg-muted" />
       <div className="min-w-0 flex-1">
-        <div className="h-3 w-40 rounded bg-muted" />
+        <div className="flex items-center gap-2">
+          <div className="h-3 w-40 rounded bg-muted" />
+          <div className="h-5 w-20 shrink-0 rounded-full bg-muted sm:hidden" />
+        </div>
         <div className="mt-1.5 h-2.5 w-56 rounded bg-muted/70" />
       </div>
-      <div className="hidden h-5 w-20 rounded-full bg-muted md:block" />
-      <div className="hidden h-3 w-16 rounded bg-muted/70 lg:block" />
-      <div className="hidden h-3 w-14 rounded bg-muted/70 sm:block" />
+      <div className="hidden h-3 w-44 rounded bg-muted/70 md:block" />
+      <div className="hidden h-5 w-20 rounded-full bg-muted sm:block" />
+      <div className="hidden h-3 w-20 rounded bg-muted/70 lg:block" />
+      <div className="hidden h-3 w-24 rounded bg-muted/70 sm:block" />
     </div>
   );
 }
@@ -27,14 +31,15 @@ export function CandidateListSkeleton({ rows = 8 }: { rows?: number }) {
       role="status"
       aria-live="polite"
       aria-label="Loading candidates"
-      className="overflow-hidden rounded-lg border border-border bg-card"
+      className="overflow-hidden rounded-lg border border-border bg-card shadow-xs"
     >
       <div className="flex items-center gap-4 border-b border-border bg-subtle px-4 py-2.5">
-        <div className="h-2.5 w-16 rounded bg-muted" />
+        <div className="h-2.5 w-8 rounded bg-muted" />
         <div className="h-2.5 w-24 rounded bg-muted" />
-        <div className="hidden h-2.5 w-16 rounded bg-muted md:block" />
+        <div className="hidden h-2.5 w-44 rounded bg-muted md:block" />
+        <div className="hidden h-2.5 w-24 rounded bg-muted sm:block" />
         <div className="hidden h-2.5 w-20 rounded bg-muted lg:block" />
-        <div className="hidden h-2.5 w-14 rounded bg-muted sm:block" />
+        <div className="hidden h-2.5 w-24 rounded bg-muted sm:block" />
       </div>
       {Array.from({ length: rows }, (_, i) => (
         <CandidateRowSkeleton key={i} />
@@ -56,18 +61,18 @@ export function CandidateProfileSkeleton() {
     >
       <div className="h-3 w-28 rounded bg-muted" />
 
-      <div className="flex flex-col gap-4 rounded-lg border border-border bg-card p-5">
+      <div className="flex flex-col gap-4 rounded-lg border border-t-2 border-border bg-card shadow-xs p-5">
         <div className="flex items-start gap-4">
           <div className="h-12 w-12 shrink-0 rounded-full bg-muted" />
           <div className="min-w-0 flex-1">
-            <div className="h-5 w-48 rounded bg-muted" />
+            <div className="h-8 w-64 max-w-full rounded bg-muted" />
             <div className="mt-2 h-3 w-64 rounded bg-muted/70" />
           </div>
-          <div className="h-5 w-20 rounded-full bg-muted" />
+          <div className="mt-1 h-6 w-24 rounded-full bg-muted" />
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {Array.from({ length: 8 }, (_, i) => (
+        <div className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+          {Array.from({ length: 7 }, (_, i) => (
             <div key={i}>
               <div className="h-2.5 w-16 rounded bg-muted" />
               <div className="mt-1.5 h-3 w-32 rounded bg-muted/70" />
@@ -87,7 +92,7 @@ export function CandidateProfileSkeleton() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
+          <div className="flex flex-col gap-3 rounded-lg border border-border bg-card shadow-xs p-4">
             <div className="h-3.5 w-24 rounded bg-muted" />
             <div className="h-2.5 w-48 rounded bg-muted/70" />
             <div className="h-1.5 w-full rounded-full bg-muted/70" />
@@ -97,14 +102,14 @@ export function CandidateProfileSkeleton() {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
+          <div className="flex flex-col gap-3 rounded-lg border border-border bg-card shadow-xs p-4">
             <div className="h-3.5 w-24 rounded bg-muted" />
             <div className="h-2.5 w-56 rounded bg-muted/70" />
             <div className="h-20 rounded-md bg-muted/60" />
           </div>
         </div>
 
-        <div className="rounded-lg border border-border bg-card p-5">
+        <div className="rounded-lg border border-border bg-card shadow-xs p-5">
           <div className="h-3.5 w-20 rounded bg-muted" />
           <div className="mt-4 flex flex-col gap-4">
             {Array.from({ length: 4 }, (_, i) => (
@@ -143,7 +148,7 @@ export function CandidateFormSkeleton() {
         {Array.from({ length: 3 }, (_, section) => (
           <div
             key={section}
-            className="rounded-lg border border-border bg-card"
+            className="rounded-lg border border-border bg-card shadow-xs"
           >
             <div className="border-b border-border px-5 py-3">
               <div className="h-3.5 w-24 rounded bg-muted" />

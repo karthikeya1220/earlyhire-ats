@@ -48,7 +48,7 @@ async function DashboardContent() {
   return (
     <PageContainer className="flex flex-col gap-4">
       <div>
-        <h2 className="text-sm font-medium text-foreground">
+        <h2 className="text-title text-foreground">
           Pipeline overview
         </h2>
         <p className="mt-0.5 text-xs text-muted-foreground">

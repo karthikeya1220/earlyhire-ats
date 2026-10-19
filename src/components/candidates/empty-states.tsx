@@ -13,7 +13,7 @@ export function EmptyCandidatesState() {
         <Users aria-hidden="true" className="h-5 w-5" />
       </span>
       <div>
-        <p className="text-sm font-medium text-foreground">
+        <p className="text-sm font-semibold text-foreground">
           No candidates yet
         </p>
         <p className="mt-1 max-w-xs text-xs text-muted-foreground">
@@ -34,7 +34,7 @@ export function NoResultsState({ hasFilters }: { hasFilters: boolean }) {
         <SearchX aria-hidden="true" className="h-5 w-5" />
       </span>
       <div>
-        <p className="text-sm font-medium text-foreground">
+        <p className="text-sm font-semibold text-foreground">
           {hasFilters ? "No matching candidates" : "No candidates to show"}
         </p>
         <p className="mt-1 max-w-xs text-xs text-muted-foreground">

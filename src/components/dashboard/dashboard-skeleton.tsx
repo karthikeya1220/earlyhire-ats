@@ -18,7 +18,7 @@ export function DashboardSkeleton() {
           {Array.from({ length: 3 }, (_, index) => (
             <div
               key={index}
-              className="flex items-start justify-between gap-3 rounded-lg border border-border bg-card p-4"
+              className="flex items-start justify-between gap-3 rounded-lg border border-border bg-card shadow-xs p-4"
             >
               <div className="min-w-0 flex-1">
                 <div className="h-2.5 w-20 rounded bg-muted" />
@@ -31,7 +31,7 @@ export function DashboardSkeleton() {
         </div>
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
-          <div className="rounded-lg border border-border bg-card lg:col-span-3">
+          <div className="rounded-lg border border-border bg-card shadow-xs lg:col-span-3">
             <div className="border-b border-border px-5 py-3">
               <div className="h-3.5 w-32 rounded bg-muted" />
               <div className="mt-2 h-2.5 w-64 max-w-full rounded bg-muted/70" />
@@ -52,7 +52,7 @@ export function DashboardSkeleton() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-border bg-card lg:col-span-2">
+          <div className="rounded-lg border border-border bg-card shadow-xs lg:col-span-2">
             <div className="border-b border-border px-5 py-3">
               <div className="h-3.5 w-32 rounded bg-muted" />
               <div className="mt-2 h-2.5 w-48 rounded bg-muted/70" />
@@ -74,7 +74,7 @@ export function DashboardSkeleton() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-border bg-card">
+        <div className="rounded-lg border border-border bg-card shadow-xs">
           <div className="border-b border-border px-5 py-3">
             <div className="h-3.5 w-28 rounded bg-muted" />
           </div>

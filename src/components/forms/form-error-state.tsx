@@ -25,7 +25,7 @@ export function FormErrorState({
           <AlertTriangle aria-hidden="true" className="h-5 w-5" />
         </span>
         <div>
-          <p className="text-sm font-medium text-foreground">{title}</p>
+          <p className="text-sm font-semibold text-foreground">{title}</p>
           <p className="mt-1 max-w-sm text-xs text-muted-foreground">
             {description}
           </p>
