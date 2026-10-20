@@ -247,10 +247,10 @@ export function LandingFeatures() {
     >
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
         <div className="max-w-2xl">
-          <p className="font-mono text-micro font-medium uppercase tracking-widest text-marketing-teal">
+          <p className="font-mono text-micro font-medium uppercase tracking-widest text-marketing-accent">
             Features
           </p>
-          <h2 className="mt-3 text-section text-marketing-ink">
+          <h2 className="mt-3 text-section font-display font-stretch-[104%] text-balance text-marketing-ink">
             Built for the way recruiting actually runs
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-marketing-muted">
@@ -266,10 +266,10 @@ export function LandingFeatures() {
               className="grid min-w-0 items-center gap-8 md:grid-cols-2 md:gap-12 lg:gap-16"
             >
               <div className={`${index % 2 === 1 ? "md:order-2 " : ""}min-w-0`}>
-                <p className="font-mono text-micro font-medium uppercase tracking-widest text-marketing-teal">
+                <p className="inline-flex border border-marketing-accent px-1.5 py-0.5 font-mono text-micro font-medium text-marketing-accent">
                   {feature.number}
                 </p>
-                <h3 className="mt-2 text-display font-semibold tracking-tight text-marketing-ink">
+                <h3 className="mt-3 text-display font-display font-stretch-[103%] font-semibold text-marketing-ink">
                   {feature.title}
                 </h3>
                 <p className="mt-3 max-w-md text-base leading-relaxed text-marketing-muted">
@@ -277,7 +277,7 @@ export function LandingFeatures() {
                 </p>
                 <Link
                   href={feature.href}
-                  className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-marketing-teal underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-marketing-accent underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <span>{feature.linkLabel}</span>
                   <span aria-hidden="true">→</span>

@@ -15,17 +15,29 @@ const PRODUCT_LINKS = [
 ] as const;
 
 const focusRing =
-  "rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+
+// The route color key — all seven stage hues as a full-bleed strip along
+// the foot of the band, like a transit line legend. Decorative.
+const ROUTE_KEY = [
+  "bg-stage-applied",
+  "bg-stage-screening",
+  "bg-stage-shortlisted",
+  "bg-stage-interview",
+  "bg-stage-offer",
+  "bg-stage-joined",
+  "bg-stage-rejected",
+] as const;
 
 export function LandingCta() {
   return (
-    <section className="border-t border-marketing-line bg-marketing-ink text-marketing-bg">
+    <section className="border-t border-marketing-line bg-marketing-band text-white">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 md:py-24">
         <div className="max-w-2xl">
-          <h2 className="text-section text-marketing-bg">
+          <h2 className="text-section font-display font-stretch-[105%] text-balance text-white">
             Bring your recruiting workflow into focus.
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-marketing-bg/75">
+          <p className="mt-4 text-lg leading-relaxed text-white/80">
             EarlyHire keeps roles, candidates, stages, and activity in one
             focused workspace — clear enough to pick up between meetings.
           </p>
@@ -33,12 +45,17 @@ export function LandingCta() {
             <Button
               asChild
               size="lg"
-              className="bg-marketing-bg text-marketing-ink hover:bg-marketing-bg/90 focus-visible:ring-marketing-teal"
+              className="mk-flat mk-cta-invert focus-visible:ring-white"
             >
               <Link href="/dashboard">Open EarlyHire ATS</Link>
             </Button>
           </div>
         </div>
+      </div>
+      <div aria-hidden="true" className="flex h-1.5 w-full">
+        {ROUTE_KEY.map((stageClass) => (
+          <span key={stageClass} className={`flex-1 ${stageClass}`} />
+        ))}
       </div>
     </section>
   );
@@ -50,7 +67,7 @@ export function LandingFooter() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <Link href="/" aria-label="EarlyHire ATS home" className={focusRing}>
+            <Link href="/" className={focusRing}>
               <Wordmark />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-marketing-muted">

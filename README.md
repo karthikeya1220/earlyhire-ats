@@ -138,9 +138,11 @@ The design system is defined in `src/app/globals.css`. It uses:
   rejected stages
 - Compact density — recruiters scan tables and pipelines, so spacing favors
   information over decoration
-- A warm-paper marketing palette (`--marketing-*` tokens) used only by the
-  landing page at `/`; product fragments on that page stay on the cool app
-  tokens so the interface reads as a distinct layer
+- A porcelain-and-cobalt marketing palette (`--marketing-*` tokens) used only
+  by the landing page at `/` — a cool porcelain base, blue-black ink, cobalt
+  accent and closing band, with the stage hues reused as route colors; product
+  fragments on that page stay on the cool app tokens so the interface reads as
+  a distinct layer
 
 Badges and pipeline bars read from `src/components/candidates/stage-badge-styles.ts`
 so colors stay consistent and adapt automatically in dark mode.

@@ -11,17 +11,17 @@ export function LandingHero() {
   return (
     <section>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid items-center gap-10 py-14 md:py-20 lg:grid-cols-12 lg:gap-12">
-          <div className="min-w-0 lg:col-span-5">
+        <div className="grid items-center gap-10 py-14 md:py-20 lg:grid-cols-12 lg:gap-14">
+          <div className="min-w-0 lg:col-span-6">
             <div className="marketing-rise flex items-center gap-3">
-              <span aria-hidden="true" className="h-px w-8 bg-marketing-teal" />
-              <p className="font-mono text-micro font-medium uppercase tracking-widest text-marketing-teal">
+              <span aria-hidden="true" className="h-px w-8 bg-marketing-accent" />
+              <p className="font-mono text-micro font-medium uppercase tracking-widest text-marketing-accent">
                 Recruiter-first ATS
               </p>
             </div>
 
             <h1
-              className="marketing-rise mt-5 text-hero text-marketing-ink"
+              className="marketing-rise mt-5 text-hero font-display font-stretch-[105%] text-balance text-marketing-ink"
               style={{ animationDelay: "60ms" }}
             >
               <span className="block">Every candidate.</span>
@@ -41,10 +41,10 @@ export function LandingHero() {
               className="marketing-rise mt-8 flex flex-wrap items-center gap-3"
               style={{ animationDelay: "180ms" }}
             >
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="mk-flat mk-cta">
                 <Link href="/dashboard">Explore the ATS</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="mk-flat">
                 <Link href="#workflow">See How It Works</Link>
               </Button>
             </div>
@@ -58,7 +58,7 @@ export function LandingHero() {
           </div>
 
           <div
-            className="min-w-0 lg:col-span-7"
+            className="min-w-0 lg:col-span-6"
             style={{ animationDelay: "150ms" }}
           >
             <div className="marketing-rise">

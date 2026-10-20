@@ -33,7 +33,7 @@
   --destructive: oklch(0.56 0.19 27);
   --destructive-foreground: oklch(0.985 0.005 20);
 
-  --success: oklch(0.58 0.13 153);
+  --success: oklch(0.51 0.13 153);
   --success-foreground: oklch(0.985 0.005 150);
 
   --warning: oklch(0.66 0.13 75);
@@ -44,11 +44,11 @@
   /* Per-stage semantic hues so the pipeline reads by color, not just label.
      Light values stay at >= ~4.5:1 on the tinted badge backgrounds. */
   --stage-applied: oklch(0.52 0.012 265);
-  --stage-screening: oklch(0.55 0.11 235);
+  --stage-screening: oklch(0.51 0.11 235);
   --stage-shortlisted: oklch(0.51 0.2 277);
-  --stage-interview: oklch(0.56 0.14 70);
-  --stage-offer: oklch(0.53 0.14 153);
-  --stage-joined: oklch(0.52 0.11 165);
+  --stage-interview: oklch(0.51 0.14 70);
+  --stage-offer: oklch(0.495 0.14 153);
+  --stage-joined: oklch(0.5 0.11 165);
   --stage-rejected: oklch(0.54 0.19 25);
 
   --radius: 0.375rem;
@@ -61,15 +61,21 @@
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Marketing surface — warm paper canvas for the public landing page.
-     Product fragments stay on the cool app tokens above, so the interface
-     reads as a distinct layer above the marketing page. */
-  --marketing-bg: oklch(0.978 0.009 95);
-  --marketing-panel: oklch(0.958 0.012 95);
-  --marketing-ink: oklch(0.25 0.021 268);
-  --marketing-muted: oklch(0.46 0.017 268);
-  --marketing-line: oklch(0.885 0.012 95);
-  --marketing-teal: oklch(0.47 0.095 200);
+  /* Marketing surface — "Metro Wayfinding": porcelain card stock, signage
+     ink, one signal cobalt; the app's stage hues ride the route diagram as
+     information color. Product fragments stay on the cool app tokens above,
+     so the interface reads as a distinct layer above the marketing page.
+     SPACE: Tailwind's 0.25rem scale is the locked space scale (no custom steps).
+     FORM: marketing chrome radius is 0 (.mk-flat); station circles and app
+     UI inside product windows are the only exceptions. Shadows: none on
+     marketing chrome; product windows keep the app's contact shadow. */
+  --marketing-bg: oklch(0.975 0.005 252);
+  --marketing-panel: oklch(0.944 0.011 246);
+  --marketing-ink: oklch(0.215 0.021 265);
+  --marketing-muted: oklch(0.46 0.018 265);
+  --marketing-line: oklch(0.87 0.011 250);
+  --marketing-accent: oklch(0.5 0.165 251);
+  --marketing-band: oklch(0.47 0.17 251);
 }
 
 .dark {
@@ -117,12 +123,13 @@
   --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.35), 0 1px 3px oklch(0 0 0 / 0.25);
   --shadow-md: 0 2px 4px oklch(0 0 0 / 0.35), 0 4px 12px oklch(0 0 0 / 0.3);
 
-  --marketing-bg: oklch(0.165 0.012 268);
-  --marketing-panel: oklch(0.195 0.013 268);
-  --marketing-ink: oklch(0.955 0.005 260);
-  --marketing-muted: oklch(0.67 0.014 268);
-  --marketing-line: oklch(1 0 0 / 0.1);
-  --marketing-teal: oklch(0.74 0.095 200);
+  --marketing-bg: oklch(0.155 0.013 265);
+  --marketing-panel: oklch(0.192 0.015 265);
+  --marketing-ink: oklch(0.96 0.004 260);
+  --marketing-muted: oklch(0.672 0.015 265);
+  --marketing-line: oklch(1 0 0 / 0.12);
+  --marketing-accent: oklch(0.615 0.145 247);
+  --marketing-band: oklch(0.42 0.14 252);
 }
 
 @theme inline {
@@ -161,7 +168,8 @@
   --color-marketing-ink: var(--marketing-ink);
   --color-marketing-muted: var(--marketing-muted);
   --color-marketing-line: var(--marketing-line);
-  --color-marketing-teal: var(--marketing-teal);
+  --color-marketing-accent: var(--marketing-accent);
+  --color-marketing-band: var(--marketing-band);
 
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
@@ -189,18 +197,21 @@
   --text-micro: 0.6875rem;
   --text-micro--line-height: 0.875rem;
   --text-micro--letter-spacing: 0.06em;
-  /* Marketing scale, same trajectory: hero → section → display → title. */
-  --text-hero: clamp(2.375rem, 4.6vw, 3.25rem);
-  --text-hero--line-height: 1.05;
+  /* Marketing scale: hero → section → display → title (Archivo for
+     hero/section; display/title stay on the app face for shared use). */
+  --text-hero: clamp(2.75rem, 5.2vw, 3.5rem);
+  --text-hero--line-height: 1.02;
   --text-hero--letter-spacing: -0.03em;
-  --text-hero--font-weight: 600;
-  --text-section: 2rem;
-  --text-section--line-height: 2.5rem;
+  --text-hero--font-weight: 800;
+  --text-section: clamp(1.75rem, 2.8vw, 2.25rem);
+  --text-section--line-height: 1.12;
   --text-section--letter-spacing: -0.02em;
-  --text-section--font-weight: 600;
+  --text-section--font-weight: 700;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-archivo), var(--font-geist-sans), ui-sans-serif,
+    system-ui, sans-serif;
 }
 
 * {
@@ -240,10 +251,73 @@ html.dark {
   animation: marketing-rise 0.65s var(--ease-out) both;
 }
 
+/* The memorable moment: one cobalt marker riding the route strip from
+   Applied to Joined, once, on load. Transform-only (the wrapper carries
+   the travel, the marker just sits on its edge) so it stays composited.
+   Static at the first station under prefers-reduced-motion. */
+@keyframes marketing-travel {
+  from {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+.marketing-travel {
+  animation: marketing-travel 2.4s var(--ease-out) 0.6s both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marketing-rise {
     animation: none;
   }
+
+  .marketing-travel {
+    animation: none;
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+}
+
+/* Marketing chrome on the shared Button: square, shadowless, ink fill with
+   an accent-tinted hover. Plain CSS on purpose — unlayered, so it wins over
+   the Button's layered rounded-md / bg-primary / shadow-sm utilities. */
+.mk-flat {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.mk-cta {
+  background-color: var(--marketing-ink);
+  color: var(--marketing-bg);
+}
+
+.mk-cta:hover {
+  background-color: color-mix(
+    in oklab,
+    var(--marketing-ink),
+    var(--marketing-accent) 22%
+  );
+}
+
+/* Inverted CTA on the closing band: porcelain on cobalt. */
+.mk-cta-invert {
+  background-color: var(--marketing-bg);
+  color: var(--marketing-ink);
+}
+
+.mk-cta-invert:hover {
+  background-color: color-mix(
+    in oklab,
+    var(--marketing-bg),
+    var(--marketing-accent) 16%
+  );
 }
 
 @media (prefers-reduced-motion: no-preference) {

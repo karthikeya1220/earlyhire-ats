@@ -21,16 +21,16 @@ const SECTION_LINKS = [
 ] as const;
 
 const focusRing =
-  "rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 const navLinkClass =
-  "rounded-sm px-3 py-2 text-sm font-medium text-marketing-muted transition-colors hover:text-marketing-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "px-3 py-2 text-sm font-medium text-marketing-muted transition-colors hover:text-marketing-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function LandingNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-marketing-line bg-marketing-bg">
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-6 px-4 sm:px-6">
-        <Link href="/" aria-label="EarlyHire ATS home" className={focusRing}>
+        <Link href="/" className={focusRing}>
           <Wordmark />
         </Link>
 
@@ -41,17 +41,17 @@ export function LandingNav() {
             </Link>
           ))}
           <span aria-hidden="true" className="mx-2 h-5 w-px bg-marketing-line" />
-          <ThemeToggle />
-          <Button asChild size="sm">
+          <ThemeToggle className="mk-flat" />
+          <Button asChild size="sm" className="mk-flat mk-cta">
             <Link href="/dashboard">Open Dashboard</Link>
           </Button>
         </nav>
 
         <div className="ml-auto flex items-center gap-1 md:hidden">
-          <ThemeToggle />
+          <ThemeToggle className="mk-flat" />
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Open menu">
+              <Button variant="ghost" size="icon" aria-label="Open menu" className="mk-flat">
                 <Menu aria-hidden="true" />
               </Button>
             </SheetTrigger>
@@ -68,7 +68,7 @@ export function LandingNav() {
                   <SheetClose asChild key={link.href}>
                     <Link
                       href={link.href}
-                      className="rounded-sm px-3 py-2.5 text-base font-medium text-marketing-muted transition-colors hover:text-marketing-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="px-3 py-2.5 text-base font-medium text-marketing-muted transition-colors hover:text-marketing-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       {link.label}
                     </Link>
@@ -76,7 +76,7 @@ export function LandingNav() {
                 ))}
               </nav>
               <div className="mt-auto px-4 pb-6">
-                <Button asChild className="w-full">
+                <Button asChild className="mk-flat mk-cta w-full">
                   <Link href="/dashboard">Open Dashboard</Link>
                 </Button>
               </div>

@@ -1,0 +1,3 @@
+EarlyHire ATS is now live — a recruiter-first ATS that keeps every candidate moving from Applied to Joined on one clear route, with the context attached at every stage. Open the demo workspace and see how the pipeline reads at a glance.
+
+→ earlyhire-ats.vercel.app

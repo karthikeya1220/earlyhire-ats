@@ -14,7 +14,7 @@ function useMounted(): boolean {
   );
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
   const mounted = useMounted();
   const isDark = resolvedTheme === "dark";
@@ -32,6 +32,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       aria-label={label}
+      className={className}
       onClick={() => setTheme(isDark ? "light" : "dark")}
     >
       {mounted && (isDark ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />)}

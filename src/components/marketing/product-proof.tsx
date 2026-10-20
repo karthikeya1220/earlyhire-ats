@@ -21,10 +21,10 @@ export function ProductProof() {
     >
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
         <div className="max-w-2xl">
-          <p className="font-mono text-micro font-medium uppercase tracking-widest text-marketing-teal">
+          <p className="font-mono text-micro font-medium uppercase tracking-widest text-marketing-accent">
             Product
           </p>
-          <h2 className="mt-3 text-section text-marketing-ink">
+          <h2 className="mt-3 text-section font-display font-stretch-[104%] text-balance text-marketing-ink">
             See the whole pipeline at once
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-marketing-muted">

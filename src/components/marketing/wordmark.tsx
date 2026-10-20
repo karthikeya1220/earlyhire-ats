@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 
 // Three ascending bars in a chip — the pipeline, ending on the tallest bar in
-// the teal accent. Fills follow the marketing tokens, so the mark inverts
-// cleanly when the closing CTA sits on the ink panel.
+// the signal accent. Fills follow the marketing tokens, so the mark inverts
+// cleanly when the closing CTA sits on the band.
 export function Wordmark({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2", className)}>
@@ -37,11 +37,12 @@ export function Wordmark({ className }: { className?: string }) {
           className="fill-marketing-bg"
           opacity="0.8"
         />
-        <rect x="14" y="5" width="3" height="12" rx="1" className="fill-marketing-teal" />
+        <rect x="14" y="5" width="3" height="12" rx="1" className="fill-marketing-accent" />
       </svg>
       <span className="text-sm font-semibold tracking-tight text-marketing-ink">
         EarlyHire
       </span>
+      {" "}
       <span className="pt-px font-mono text-micro font-medium uppercase tracking-widest text-marketing-muted">
         ATS
       </span>

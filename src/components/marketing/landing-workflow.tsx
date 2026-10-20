@@ -9,7 +9,8 @@ const STEPS = [
     copy: "Keep every open role in one list, with its status, department, and location at a glance.",
     linkLabel: "Open jobs",
     href: "/jobs",
-    dot: "bg-stage-applied",
+    station: "border-stage-applied",
+    line: "bg-stage-applied",
   },
   {
     number: "02",
@@ -17,7 +18,8 @@ const STEPS = [
     copy: "Search by name, title, company, or skills — then narrow by stage or role.",
     linkLabel: "Browse candidates",
     href: "/candidates",
-    dot: "bg-stage-screening",
+    station: "border-stage-screening",
+    line: "bg-stage-screening",
   },
   {
     number: "03",
@@ -25,7 +27,8 @@ const STEPS = [
     copy: "Advance people through Applied to Joined with one recorded transition.",
     linkLabel: "Open the interview slate",
     href: "/candidates?stage=interview",
-    dot: "bg-stage-interview",
+    station: "border-stage-interview",
+    line: "bg-stage-interview",
   },
   {
     number: "04",
@@ -33,7 +36,8 @@ const STEPS = [
     copy: "Profiles carry the notes and stage history, so every decision has a trail.",
     linkLabel: "See a sample profile",
     href: "/candidates/00000000-0000-4000-8000-000000000101",
-    dot: "bg-stage-joined",
+    station: "border-stage-joined",
+    line: "bg-stage-joined",
   },
 ] as const;
 
@@ -42,10 +46,10 @@ export function LandingWorkflow() {
     <section id="workflow" className="scroll-mt-16 border-t border-marketing-line">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
         <div className="max-w-2xl">
-          <p className="font-mono text-micro font-medium uppercase tracking-widest text-marketing-teal">
+          <p className="font-mono text-micro font-medium uppercase tracking-widest text-marketing-accent">
             Workflow
           </p>
-          <h2 className="mt-3 text-section text-marketing-ink">
+          <h2 className="mt-3 text-section font-display font-stretch-[104%] text-balance text-marketing-ink">
             How recruiters use EarlyHire
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-marketing-muted">
@@ -60,12 +64,15 @@ export function LandingWorkflow() {
               <div className="flex items-center">
                 <span
                   aria-hidden="true"
-                  className={cn("h-2.5 w-2.5 shrink-0 rounded-full", step.dot)}
+                  className={cn(
+                    "h-3.5 w-3.5 shrink-0 rounded-full border-[3px] bg-marketing-bg",
+                    step.station,
+                  )}
                 />
                 {index < STEPS.length - 1 && (
                   <span
                     aria-hidden="true"
-                    className="ml-3 hidden h-px flex-1 bg-marketing-line lg:block"
+                    className={cn("ml-3 hidden h-[3px] flex-1 lg:block", step.line)}
                   />
                 )}
               </div>
@@ -80,7 +87,7 @@ export function LandingWorkflow() {
               </p>
               <Link
                 href={step.href}
-                className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-marketing-teal underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-marketing-accent underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <span>{step.linkLabel}</span>
                 <span aria-hidden="true">→</span>
